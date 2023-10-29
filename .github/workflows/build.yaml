@@ -39,3 +39,5 @@ jobs:
           commit_message: Update package
           ssh_keyscan_types: rsa,dsa,ecdsa,ed25519
           allow_empty_commits: false
+          assets: |
+            *.install
