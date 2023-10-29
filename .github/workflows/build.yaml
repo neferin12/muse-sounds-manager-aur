@@ -1,0 +1,41 @@
+name: PKGBUILD CI
+
+on: [push, pull_request]
+
+jobs:
+  build-packages:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Build Package
+      id: makepkg
+      uses: edlanglois/pkgbuild-action@v1
+      with:
+        aurDeps: true
+    - name: Print Package Files
+      run: |
+        echo "Successfully created the following package archive"
+        echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
+    - name: Upload Package Archive
+      uses: actions/upload-artifact@v3
+      with:
+        name: pkgfiles
+        path: ${{ steps.makepkg.outputs.pkgfile0 }}
+  aur-publish:
+    if: github.event_name != 'pull_request'
+    needs: [build-packages]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Publish AUR package
+        uses: KSXGitHub/github-actions-deploy-aur@v2.7.0
+        with:
+          pkgname: muse-sounds-manager-bin
+          pkgbuild: ./PKGBUILD
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: Update package
+          ssh_keyscan_types: rsa,dsa,ecdsa,ed25519
+          allow_empty_commits: false
