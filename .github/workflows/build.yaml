@@ -36,8 +36,9 @@ jobs:
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: Update package
+          commit_message: ${{ github.event.commits[0].message }}
           ssh_keyscan_types: rsa,dsa,ecdsa,ed25519
           allow_empty_commits: false
           assets: |
             *.install
+            LICENSE
