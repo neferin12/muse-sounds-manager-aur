@@ -13,7 +13,7 @@ conflicts=('muse-hub')
 depends=('fontconfig' 'zlib' 'hicolor-icon-theme' 'skia-sharp')
 makedepends=()
 install="$_pkgname.install"
-source=('http://muse-cdn.com/Muse_Sounds_Manager_x64.tar.gz' 'LICENSE')
+source=('https://muse-cdn.com/Muse_Sounds_Manager_x64.tar.gz' 'LICENSE')
 sha256sums=('b5986615810a73cebf1ff201aa99e74f67bb56f9f8d814930fde73aa93bd682e'
             'ed3c749e7391b70b11717469815ce8fe65a962cf40dd4df88e21bf240b2058b2')
 options=('!strip')
