@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Build Package
       id: makepkg
       uses: edlanglois/pkgbuild-action@v1
@@ -24,7 +24,7 @@ jobs:
         echo "Successfully created the following package archive"
         echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
     - name: Upload Package Archive
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: pkgfiles
         path: ${{ steps.makepkg.outputs.pkgfile0 }}
@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v2.7.0
+        uses: KSXGitHub/github-actions-deploy-aur@v3
         with:
           pkgname: muse-sounds-manager-bin
           pkgbuild: ./PKGBUILD
