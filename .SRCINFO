@@ -9,7 +9,6 @@ pkgbase = muse-sounds-manager-bin
 	depends = fontconfig
 	depends = zlib
 	depends = hicolor-icon-theme
-	depends = skia-sharp
 	provides = muse-sounds-manager=2.0.4.872
 	conflicts = muse-hub
 	replaces = muse-hub
