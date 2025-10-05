@@ -10,7 +10,7 @@ license=(custom:muse-sounds-manager)
 provides=("$_pkgname=$pkgver")
 replaces=('muse-hub')
 conflicts=('muse-hub')
-depends=('fontconfig' 'zlib' 'hicolor-icon-theme' 'skia-sharp')
+depends=('fontconfig' 'zlib' 'hicolor-icon-theme')
 makedepends=()
 install="$_pkgname.install"
 source=("_$pkgname-$pkgver.tar.gz::https://muse-cdn.com/Muse_Sounds_Manager_x64.tar.gz" 'LICENSE')
@@ -32,7 +32,6 @@ package(){
   mkdir -p "$pkgdir/usr/share/icons"
 
   cp bin/* "$pkgdir/opt/muse-sounds-manager/"
-  rm "$pkgdir/opt/muse-sounds-manager/libSkiaSharp.so"
 
   ln -s /opt/muse-sounds-manager/muse-sounds-manager "$pkgdir/usr/bin/muse-sounds-manager"
 
